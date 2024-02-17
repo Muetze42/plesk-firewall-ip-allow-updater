@@ -1,0 +1,4 @@
+{
+    "url": "{url-to-public-script}",
+    "token": "{client-token}"
+}

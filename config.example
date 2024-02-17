@@ -1,0 +1,18 @@
+{
+    "target": "/../ip-table.json",
+    "user": "admin-root",
+    "pkk-pass": "",
+    "always-allowed-ips": [
+        "XX.XXX.XXX.XXX"
+    ],
+    "firewall-names": [
+        "Allow Database",
+        "Allow SSH"
+    ],
+    "clients": [
+        {
+            "id": 1,
+            "token": "<TOKEN>"
+        }
+    ]
+}

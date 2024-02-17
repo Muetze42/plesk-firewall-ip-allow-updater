@@ -1,0 +1,10 @@
+/.fleet
+/.idea
+/.vscode
+ip-table-api-config.json
+/public/*.php
+/config.json
+/client/config.json
+/script/vendor/
+/private.ppk
+/client/debug.txt

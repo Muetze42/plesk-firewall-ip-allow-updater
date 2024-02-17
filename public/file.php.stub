@@ -1,0 +1,27 @@
+<?php
+
+http_response_code(204);
+
+if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
+    $array = explode(' ', trim($_SERVER['HTTP_AUTHORIZATION']));
+    $bearer = end($array);
+
+    /* @var array{target: string, clients: array{id: int, token: string}} $config */
+    $config = json_decode(file_get_contents(__DIR__ . '/../config.json'), true);
+
+    foreach ($config['clients'] as $client) {
+        if ($client['token'] !== $bearer) {
+            continue;
+        }
+
+        $target = __DIR__ . $config['target'];
+        $ipTable = file_exists($target) ? json_decode(file_get_contents($target), true) : [];
+        $ipTable[$client['id']] = getenv('REMOTE_ADDR');
+
+        file_put_contents(
+            $target,
+            json_encode($ipTable, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+        );
+        exit();
+    }
+}
